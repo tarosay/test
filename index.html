@@ -319,6 +319,7 @@ if ('ontouchstart' in window) {
   function render() {
     lat = Math.max( - 85, Math.min( 85, lat ) );
     theta = 90 - lat;
+    test_vat = THREE.Math.degToRad(60);
     phi = THREE.Math.degToRad(theta);
     theta = THREE.Math.degToRad( lon );
     camera.position.x = 100 * Math.sin( phi ) * Math.cos( theta );
