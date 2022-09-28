@@ -239,7 +239,7 @@ if ('ontouchstart' in window) {
     texture.generateMipmaps = false;
     texture.minFilter = THREE.NearestFilter;
     texture.maxFilter = THREE.NearestFilter;
-    texture.format = THREE.RGBFormat;
+    //texture.format = THREE.RGBFormat; どうやらTHREE.RGBFormatは遅いので削除されたらしい
     // 動画に合わせてテクスチャを更新
     setInterval( function () {
       if ( video.readyState >= video.HAVE_CURRENT_DATA ) {
