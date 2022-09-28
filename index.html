@@ -318,10 +318,11 @@ if ('ontouchstart' in window) {
   }
   function render() {
     lat = Math.max( - 85, Math.min( 85, lat ) );
-    theta = 90 - lat;
-    test_vat = THREE.Math.degToRad(60);
-    phi = THREE.Math.degToRad(theta);
-    theta = THREE.Math.degToRad( lon );
+    //なぜかdegToRadでTypeErrorが出ている。よくわからないので、いったんjsのmathメソッドで代用してみる
+    //phi = THREE.Math.degToRad(90 - lat);
+    //theta = THREE.Math.degToRad( lon );
+    phi = (90 - lat) * (Math.PI / 180);
+    theta = lon * (Math.PI / 180);
     camera.position.x = 100 * Math.sin( phi ) * Math.cos( theta );
     camera.position.y = 100 * Math.cos( phi );
     camera.position.z = 100 * Math.sin( phi ) * Math.sin( theta );
