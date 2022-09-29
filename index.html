@@ -184,7 +184,7 @@ if ('ontouchstart' in window) {
 (function () {
 
   // 変数の初期化
-  var camera, scene, renderer, video, texture, container, canvas;
+  var camera, scene, renderer, video, texture, container, canvas, width, height;
   var fov = 60,
   isUserInteracting = false,
   onMouseDownMouseX = 0, onMouseDownMouseY = 0,
@@ -199,11 +199,12 @@ if ('ontouchstart' in window) {
 
     // コンテナの準備
     container = document.getElementById( 'container' );
-    canvas = document.getElementById( 'canvas' );
-    console.log(canvas);
     container.addEventListener( 'click', function () {
       video.play();
     } );
+
+    width = container.clientWidth;
+    height = container.clientHeight;
 
     // video 要素を生成
     video = document.createElement( 'video' );
@@ -230,7 +231,7 @@ if ('ontouchstart' in window) {
     }, 1000 / 24 );
 
     // カメラを生成
-    camera = new THREE.PerspectiveCamera( 75, container.innerWidth / container.innerHeight, 1, 2000 );
+    camera = new THREE.PerspectiveCamera( 75, width / height, 1, 2000 );
 
     // シーンを生成
     scene = new THREE.Scene();
@@ -244,7 +245,7 @@ if ('ontouchstart' in window) {
     // レンダラーを生成
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( width, height );
     container.appendChild(renderer.domElement);
 
 
@@ -256,9 +257,11 @@ if ('ontouchstart' in window) {
     onWindowResize( null );
   }
   function onWindowResize ( event ) {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    width = container.clientWidth;
+    height = container.clientHeight;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( width, height );
   }
   function onDocumentMouseDown( event ) {
     event.preventDefault();
@@ -314,8 +317,8 @@ if ('ontouchstart' in window) {
     //2画面
     let h = renderer.domElement.height;
 					let w = renderer.domElement.width * 0.5;
-					h = 200;
-          w = 100;
+					h = height;
+          w = width * 0.5;
 					renderer.setScissorTest(true);
 
 					// render main camera
