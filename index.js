@@ -32,13 +32,28 @@
       video.muted = true;
       video.load();
       video.play();
-  
+      
+      /*
       //テクスチャーにvideoを設定
       texture = new THREE.VideoTexture(video);
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
       texture.format = THREE.RGBFormat;
-  
+      */
+
+      // video からテクスチャを生成
+      texture = new THREE.Texture( video );
+      texture.generateMipmaps = false;
+      texture.minFilter = THREE.NearestFilter;
+      texture.maxFilter = THREE.NearestFilter;
+      texture.format = THREE.RGBFormat;
+      // 動画に合わせてテクスチャを更新
+      setInterval( function () {
+        if ( video.readyState >= video.HAVE_CURRENT_DATA ) {
+          texture.needsUpdate = true;
+        }
+      }, 1000 / 24 );
+
       //マテリアルの作成
       var material = new THREE.MeshBasicMaterial({
         // 画像をテクスチャとして読み込み
