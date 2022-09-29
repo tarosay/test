@@ -33,14 +33,14 @@
       video.load();
       video.play();
       
-      /*
+      
       //テクスチャーにvideoを設定
       texture = new THREE.VideoTexture(video);
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
       texture.format = THREE.RGBFormat;
-      */
 
+      /*
       // video からテクスチャを生成
       texture = new THREE.Texture( video );
       texture.generateMipmaps = false;
@@ -53,6 +53,7 @@
           texture.needsUpdate = true;
         }
       }, 1000 / 24 );
+      */
 
       //マテリアルの作成
       var material = new THREE.MeshBasicMaterial({
