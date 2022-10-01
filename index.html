@@ -313,25 +313,25 @@ if ('ontouchstart' in window) {
     camera.position.z = 100 * Math.sin( phi ) * Math.sin( theta );
     camera.lookAt( scene.position );
     //一画面
-    //renderer.render( scene, camera );
+    renderer.render( scene, camera );
     //2画面
-    let h = renderer.domElement.height;
-					let w = renderer.domElement.width * 0.5;
-					h = height;
-          w = width * 0.5;
-					renderer.setScissorTest(true);
-
-					// render main camera
-					renderer.setScissor(0, 0, w, h);
-					renderer.setViewport(0, 0, w, h);
-					renderer.render(scene, camera);
-
-					// render sub camera
-					renderer.setScissor(w, 0, w, h);
-					renderer.setViewport(w, 0, w, h);
-					renderer.render(scene, camera);
-
-					renderer.setScissorTest(false);
+    //let h = renderer.domElement.height;
+	//				let w = renderer.domElement.width * 0.5;
+	//				h = height;
+      //    w = width * 0.5;
+	//				renderer.setScissorTest(true);
+//
+//					// render main camera
+//					renderer.setScissor(0, 0, w, h);
+//					renderer.setViewport(0, 0, w, h);
+//					renderer.render(scene, camera);
+//
+//					// render sub camera
+//					renderer.setScissor(w, 0, w, h);
+//					renderer.setViewport(w, 0, w, h);
+//					renderer.render(scene, camera);
+//
+//					renderer.setScissorTest(false);
   }
 
 })();
